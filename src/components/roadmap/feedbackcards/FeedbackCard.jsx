@@ -1,34 +1,42 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { MyContext } from "../../../App";
+import { useContext } from "react";
 
 export default function FeedbackCard({ feedback, setData }) {
   //   console.log(feedback);
+
+  const hasUpvoted = feedback.hasUpvoted;
+  // console.log(feedback);
+
+  // console.log(hasUpvoted);
+
+  const { data } = useContext(MyContext);
 
   const commentCount = Array.isArray(feedback.comments)
     ? feedback.comments.length
     : 0;
 
-  const [hasUpvoted, setHasUpvoted] = useState(false);
+  // const [hasUpvoted, setHasUpvoted] = useState(feedback.isUpvoted);
 
   const onUpvoteClick = () => {
-    const newHasUpvoted = !hasUpvoted;
-
-    setData((prevData) => {
-      const newData = JSON.parse(JSON.stringify(prevData));
-      const feedbackItem = newData.productRequests.find(
-        (item) => item.id === feedback.id
-      );
-
-      if (newHasUpvoted) {
-        feedbackItem.upvotes += 1;
-      } else {
-        feedbackItem.upvotes -= 1;
-      }
-
-      return newData;
-    });
-
-    setHasUpvoted(newHasUpvoted);
+    // const newHasUpvoted = !hasUpvoted;
+    // const feedbackItem = data.productRequests.find(
+    //   (item) => item.id === feedback.id
+    // );
+    // const updatetFeedback = data.productRequests.map((feedback) => {
+    //   return { ...feedback, upvotes: feedback.upvotes + 1 };
+    // });
+    // !feedbackItem.hasUpvoted;
+    // if (!feedbackItem.hasUpvoted) {
+    //   feedbackItem.upvotes + 1;
+    //   !hasUpvoted;
+    // }
+    // if (newHasUpvoted) {
+    //   feedbackItem.upvotes += 1;
+    // } else {
+    //   feedbackItem.upvotes -= 1;
+    // }
+    // return newData;
   };
 
   return (
